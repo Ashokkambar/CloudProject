@@ -6,6 +6,8 @@ import ResponseBox from "../components/ResponseBox";
 
 import "../styles/main.css";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+
 function Home() {
 
   const [file, setFile] = useState(null);
@@ -26,7 +28,7 @@ function Home() {
 
     try {
 
-      const response = await fetch("http://127.0.0.1:8000/upload-pdf", {
+      const response = await fetch(`${API_BASE_URL}/upload-pdf`, {
         method: "POST",
         body: formData,
       });
@@ -69,7 +71,7 @@ function Home() {
       formData.append("query", question);
       formData.append("document_text", documentText);
 
-      const response = await fetch("http://127.0.0.1:8000/ask-question", {
+      const response = await fetch(`${API_BASE_URL}/ask-question`, {
         method: "POST",
         body: formData,
       });
